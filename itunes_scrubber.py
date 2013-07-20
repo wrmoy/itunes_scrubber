@@ -1,3 +1,4 @@
+import copy
 import io
 import os
 import os.path
@@ -46,7 +47,7 @@ print ''
 
 # Remove tracks with no associated file from dictionary
 for track_id in to_remove:
-	print "Removing " + itunes_plist['Tracks'][track_id]['Name']
+	print "Removing " + itunes_plist['Tracks'][track_id]['Name'].encode('ascii', 'ignore')
 	del itunes_plist['Tracks'][track_id]
 
 # Write dictionary back to file
