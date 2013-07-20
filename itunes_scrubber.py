@@ -9,18 +9,17 @@ import urlparse
 import xml.etree.ElementTree
 
 # Find iTunes Library XML
-xml_path = os.environ['HOME']
 if sys.platform == 'win32':
+	xml_path = os.environ['USERPROFILE']
 	if platform.release() == 'XP':
 		xml_path = os.path.join(xml_path, 'My Documents', 'My Music', 'iTunes', 'iTunes Music Library.xml')
-	elif platform.release() == 'Vista':
+	elif platform.release() == 'Vista' or platform.release() == '7' or platform.release() == '8':
 		xml_path = os.path.join(xml_path, 'Music', 'iTunes', 'iTunes Music Library.xml')
-	elif platform.release() == '7' or platform.release() == '8':
-		xml_path = os.path.join(xml_path, 'My Music', 'iTunes', 'iTunes Music Library.xml')
 	else:
 		print "Platform not supported"
 		sys.exit(1)
 elif sys.platform == 'darwin':
+	xml_path = os.environ['HOME']
 	xml_path = os.path.join(xml_path, 'Music', 'iTunes', 'iTunes Music Library.xml')
 else:
 	print "System not supported"
